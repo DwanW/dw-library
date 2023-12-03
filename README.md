@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DW-Library
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Welcome to my project portfolio [**CURRENTLY UNDER CONSTRUCTION**] ! This repository serves as a showcase of my software development projects and contributions. Here, you'll find a diverse range of projects that highlight my skills, creativity, and problem-solving abilities. Feel free to explore the code, documentation, and project details to get a better understanding of my capabilities as a software developer.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Table of Contents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Technologies](#technologies)
+- [Contact](#contact)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Programming Languages:**
 
-## Learn More
+  - This portfolio is written in TypeScript
 
-To learn more about Next.js, take a look at the following resources:
+- **Frameworks and Libraries:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  - Nextjs
+  - React
+  - Tailwindcss
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Tools:**
+  - VSCode
+  - Git
+  - GitHub
+  - Vercel
 
-## Deploy on Vercel
+## Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Feel free to reach out to me via email at your.email@example.com or connect with me on LinkedIn. Let's connect and discuss potential opportunities or collaborations!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Thank you for visiting my portfolio. Happy coding!
