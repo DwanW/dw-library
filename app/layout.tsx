@@ -3,11 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/navigation";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "DW Library",
-  description: "My tiny internet space for guests",
+  description: "personal portfolio",
 };
 
 export default function RootLayout({
@@ -18,8 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
-        <main>{children}</main>
+        <main className="min-h-screen">
+          <Navigation />
+          {children}
+        </main>
       </body>
     </html>
   );
