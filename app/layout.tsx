@@ -30,7 +30,13 @@ export default function RootLayout({
           radius="full"
           appearance="dark"
         >
-          <Container className="pt-12 sm:pt-20 px-4 sm:px-0">
+          <Container
+            px={{
+              initial: "4",
+              xs: "0",
+            }}
+            className="pt-12 sm:pt-20"
+          >
             <Navigation />
             {children}
           </Container>

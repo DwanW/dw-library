@@ -1,10 +1,18 @@
+import { Box, Flex, Section, Text } from "@radix-ui/themes";
+
 export default function Page() {
   return (
-    <div className="grid md:grid-cols-6 gap-12 items-center">
-      <div className="md:col-span-6 h-24 ">
-        what I am upto, and what I am looking for
-      </div>
-      <div className="md:col-span-6 h-48 ">contact item list</div>
-    </div>
+    <Flex direction="column" gap="3">
+      <Section size="1">
+        <Box height="5">
+          <Text> what I am upto, and what I am looking for</Text>
+        </Box>
+      </Section>
+      <Section size="1">
+        <Box height="5">
+          <Text>contact item list</Text>
+        </Box>
+      </Section>
+    </Flex>
   );
 }

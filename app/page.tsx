@@ -1,10 +1,26 @@
 // import Image from "next/image";
 
+import { Box, Flex, Grid, Text } from "@radix-ui/themes";
+
 export default function Home() {
   return (
-    <div className="grid md:grid-cols-6 gap-12 items-center">
-      <div className="md:col-span-3 h-60 ">picture container</div>
-      <div className="md:col-span-3 h-60 ">summary + greeting</div>
-    </div>
+    <Grid
+      columns={{
+        initial: "1",
+        xs: "2",
+      }}
+      gap="3"
+    >
+      <Flex direction="column" gap="3">
+        <Box height="auto">
+          <Text>picture container</Text>
+        </Box>
+      </Flex>
+      <Flex direction="column" gap="3">
+        <Box height="auto">
+          <Text>summary + greeting</Text>
+        </Box>
+      </Flex>
+    </Grid>
   );
 }
