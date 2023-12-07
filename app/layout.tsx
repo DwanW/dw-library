@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "@radix-ui/themes/styles.css";
+import { Container, Theme } from "@radix-ui/themes";
 import Navigation from "./components/navigation";
 
 const inter = Inter({
@@ -20,10 +22,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main className="min-h-screen">
-          <Navigation />
-          {children}
-        </main>
+        <Theme
+          accentColor="blue"
+          grayColor="gray"
+          panelBackground="solid"
+          scaling="100%"
+          radius="full"
+          appearance="dark"
+        >
+          <Container
+            px={{
+              initial: "4",
+              xs: "0",
+            }}
+            className="pt-12 sm:pt-20"
+          >
+            <Navigation />
+            {children}
+          </Container>
+        </Theme>
       </body>
     </html>
   );
