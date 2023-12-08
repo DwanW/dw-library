@@ -1,6 +1,10 @@
-// import Image from "next/image";
+import Image from "next/image";
+import homeImg1 from "public/1.jpg";
+import homeImg2 from "public/2.jpg";
+import homeImg3 from "public/3.jpg";
 
 import { Box, Flex, Grid, Text } from "@radix-ui/themes";
+import { TypeText } from "./components/typewriter";
 
 export default function Home() {
   return (
@@ -9,16 +13,94 @@ export default function Home() {
         initial: "1",
         xs: "2",
       }}
-      gap="3"
+      gap={{
+        initial: "2",
+        xs: "9",
+      }}
+      py={{
+        initial: "0",
+        xs: "9",
+      }}
     >
-      <Flex direction="column" gap="3">
-        <Box height="auto">
-          <Text>picture container</Text>
+      <Grid
+        columns={{
+          initial: "2",
+          xs: "3",
+        }}
+        gap="3"
+        my={{
+          initial: "0",
+          xs: "8",
+        }}
+      >
+        <div className="relative h-32 sm:h-40 col-span-2 sm:col-span-3">
+          <Image
+            alt="image1"
+            src={homeImg1}
+            fill
+            priority
+            className="rounded-lg object-cover"
+          />
+        </div>
+        <div className="relative h-64 sm:h-80 sm:mb-0 col-span-1">
+          <Image
+            alt="image2"
+            src={homeImg2}
+            fill
+            priority
+            className="rounded-lg object-cover object-[-16px] sm:object-center"
+          />
+        </div>
+        <div className="relative h-64 sm:h-80 sm:mb-0 col-span-1 sm:col-span-2">
+          <Image
+            alt="image2"
+            src={homeImg3}
+            fill
+            priority
+            className="rounded-lg object-cover object-[-16px] sm:object-center"
+          />
+        </div>
+      </Grid>
+      <Flex
+        direction="column"
+        gap="3"
+        pt={{
+          initial: "2",
+          xs: "0",
+        }}
+        pb={{
+          initial: "9",
+          xs: "0",
+        }}
+        my={{
+          initial: "0",
+          xs: "8",
+        }}
+        justify="center"
+      >
+        <Box height="6">
+          <Text size="6" weight="bold">
+            <TypeText text="Greetings, I'm Dwan" />
+          </Text>
         </Box>
-      </Flex>
-      <Flex direction="column" gap="3">
-        <Box height="auto">
-          <Text>summary + greeting</Text>
+        <Box>
+          <Text size="2">
+            I&apos;m a passionate{" "}
+            <Text weight="bold" color="tomato">
+              Full Stack developer
+            </Text>{" "}
+            with a strong focus on creating{" "}
+            <Text weight="bold" color="green">
+              software applications
+            </Text>
+            . I enjoy tackling complex challenges and coming up with innovative
+            solutions. Equipped with expertise in the latest web technologies,
+            my goal is to{" "}
+            <Text weight="bold" color="violet">
+              help organizations succeed with effective digital solutions
+            </Text>
+            .
+          </Text>
         </Box>
       </Flex>
     </Grid>
