@@ -7,6 +7,7 @@ import {
   faGraduationCap,
 } from "@fortawesome/free-solid-svg-icons";
 import SkillsWidget from "../components/skillsWidget";
+import TimelineList from "../components/timelineList";
 
 export default function Page() {
   return (
@@ -32,7 +33,7 @@ export default function Page() {
       <Section size="1">
         <Box height="auto">
           <SectionHeader text="work" icon={faBriefcase} />
-          <Text>work history timeline</Text>
+          <TimelineList />
         </Box>
       </Section>
       <Section size="1">
