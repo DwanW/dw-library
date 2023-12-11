@@ -33,9 +33,8 @@ export default function RootLayout({
           <Container
             px={{
               initial: "4",
-              xs: "0",
             }}
-            className="pt-12 sm:pt-20"
+            className="pt-12 sm:pt-20 relative"
           >
             <Navigation />
             {children}
