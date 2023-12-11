@@ -1,20 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import homeImg2 from "public/2.jpg";
+import DWLogo from "public/dw-work.jpg";
+import LT3Logo from "public/lt3-work.jpg";
 import TimelineItem from "./timelineItem";
 
 type Props = {};
 
 const EXP = [
   {
-    title: "lt3",
-    subtitle: "company description",
-    duty: "main duty",
+    title: "LT3 ATG",
+    subtitle: "Full Stack Developer (2021-2023)",
+    duties: [
+      "Analyze user requirements and convert them into software solutions.",
+      "Debug and troubleshoot issues, identifying root causes and implementing solutions.",
+      "Contribute to the design and architecture of software systems.",
+    ],
     logo: (
       <Image
         alt="image2"
-        src={homeImg2}
+        src={LT3Logo}
         fill
         priority
         className="rounded-2xl object-cover"
@@ -22,13 +27,17 @@ const EXP = [
     ),
   },
   {
-    title: "lt3",
-    subtitle: "company description",
-    duty: "main duty",
+    title: "DW Interactive Dev",
+    subtitle: "Full Stack Developer (2020-2021)",
+    duties: [
+      "Engage with clients to understand their requirements, expectations, and project scope",
+      "Write, test, and maintain code to deliver the agreed-upon software solution.",
+      "Offer ongoing maintenance and support services, addressing any issues that arise after the initial deployment",
+    ],
     logo: (
       <Image
         alt="image2"
-        src={homeImg2}
+        src={DWLogo}
         fill
         priority
         className="rounded-2xl object-cover"
@@ -39,7 +48,7 @@ const EXP = [
 
 export default function TimelineList({}: Props) {
   return (
-    <div>
+    <div className="max-w-md m-auto">
       {EXP.map((obj, idx) => (
         <TimelineItem
           key={obj.title}
