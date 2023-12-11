@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import SkillsWidget from "../components/skillsWidget";
 import TimelineList from "../components/timelineList";
+import EducationList from "../components/educationList";
 
 export default function Page() {
   return (
@@ -39,7 +40,7 @@ export default function Page() {
       <Section size="1">
         <Box height="auto">
           <SectionHeader text="education" icon={faGraduationCap} />
-          <Text>education list</Text>
+          <EducationList />
         </Box>
       </Section>
     </Flex>

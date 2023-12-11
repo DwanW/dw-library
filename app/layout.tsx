@@ -34,7 +34,7 @@ export default function RootLayout({
             px={{
               initial: "4",
             }}
-            className="pt-12 sm:pt-20"
+            className="pt-12 sm:pt-20 relative"
           >
             <Navigation />
             {children}

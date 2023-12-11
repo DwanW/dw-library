@@ -48,7 +48,7 @@ const Navigation: React.FC<navigationProps> = ({}) => {
   let pathname = usePathname() || "/";
 
   return (
-    <div className="fixed left-0 right-0 sm:top-0 bottom-0 sm:bottom-auto pb-8 sm:pt-8 sm:pb-0 bg-transparent backdrop-blur-sm">
+    <div className="fixed left-0 right-0 sm:top-0 bottom-0 sm:bottom-auto pb-8 sm:pt-8 sm:pb-0 bg-transparent backdrop-blur-sm z-[99]">
       <div className="hidden sm:flex max-w-md mx-auto justify-center text-sm sm:text-base">
         {navData.map((nav) => {
           const isActive = nav.link === pathname;
@@ -62,7 +62,7 @@ const Navigation: React.FC<navigationProps> = ({}) => {
           );
         })}
       </div>
-      <div className="max-w-md mx-auto flex sm:hidden justify-center text-sm sm:text-base">
+      <div className="max-w-md mx-auto flex sm:hidden justify-center text-sm sm:text-base bg-transparent backdrop-blur-sm z-[99]">
         {navData.map((nav) => {
           const isActive = nav.link === pathname;
           return (

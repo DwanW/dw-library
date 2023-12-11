@@ -50,11 +50,7 @@ export default function TimelineList({}: Props) {
   return (
     <div className="max-w-md m-auto">
       {EXP.map((obj, idx) => (
-        <TimelineItem
-          key={obj.title}
-          exp={obj}
-          isLast={idx + 1 === EXP.length}
-        />
+        <TimelineItem key={obj.title} exp={obj} />
       ))}
     </div>
   );
