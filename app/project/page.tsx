@@ -6,6 +6,7 @@ import {
   TabsTrigger,
   Text,
 } from "@radix-ui/themes";
+import ProjectList from "../components/projectList";
 
 export default function Page() {
   return (
@@ -18,7 +19,7 @@ export default function Page() {
 
         <Box px="4" pt="3" pb="2">
           <TabsContent value="work">
-            <Text size="2">work projects I am a part of</Text>
+            <ProjectList />
           </TabsContent>
 
           <TabsContent value="hobby">

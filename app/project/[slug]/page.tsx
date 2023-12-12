@@ -1,6 +1,12 @@
 import { Box, Flex, Grid, Section, Text } from "@radix-ui/themes";
+type Props = {
+  params: {
+    slug: String;
+  };
+};
 
-export default function Page() {
+export default function Page({ params }: Props) {
+  console.log(params.slug);
   return (
     <Grid columns={{ initial: "1", xs: "2" }}>
       <Flex direction="column" gap="3" className="sm:col-span-3">
