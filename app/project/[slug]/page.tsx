@@ -6,7 +6,6 @@ type Props = {
 };
 
 export default function Page({ params }: Props) {
-  console.log(params.slug);
   return (
     <Grid columns={{ initial: "1", xs: "2" }}>
       <Flex direction="column" gap="3" className="sm:col-span-3">
