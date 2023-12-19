@@ -1,7 +1,12 @@
 import { Box, Flex, Grid, Section, Text } from "@radix-ui/themes";
 import Image from "next/image";
 
-import EVLogo from "public/evolve-ed.jpg";
+import SkipHero from "public/project/skip.png";
+import DawgsHero from "public/project/dawgs.png";
+import ChatbotHero from "public/project/chatbot.png";
+import TaxClinicHero from "public/project/taxclinic.png";
+import DwanDevHero from "public/project/dwdev.png";
+import EmojiHero from "public/project/emojiparty.png";
 
 type Props = {
   params: {
@@ -14,14 +19,90 @@ const PROJECT_META_DATA = [
     slug: "skip",
     hero: (
       <Image
-        alt="evolveu logo"
-        src={EVLogo}
+        alt="logo"
+        src={SkipHero}
+        priority
+        className="object-cover rounded-md block w-full h-96"
+      />
+    ),
+    summary: "",
+    demoLink:
+      "https://play.google.com/store/apps/details?id=com.skipthedepot.app&hl=en_US",
+    repoLink: "",
+    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+  },
+  {
+    slug: "dawgs",
+    hero: (
+      <Image
+        alt="logo"
+        src={DawgsHero}
+        priority
+        className="object-cover rounded-md block w-full h-96"
+      />
+    ),
+    summary: "",
+    demoLink: "https://dawgsbaseball.ca/",
+    repoLink: "",
+    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+  },
+  {
+    slug: "aichat",
+    hero: (
+      <Image
+        alt="logo"
+        src={ChatbotHero}
         priority
         className="object-cover rounded-md block w-full h-96"
       />
     ),
     summary: "",
     demoLink: "",
+    repoLink: "",
+    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+  },
+  {
+    slug: "dwdev",
+    hero: (
+      <Image
+        alt="logo"
+        src={DwanDevHero}
+        priority
+        className="object-cover rounded-md block w-full h-96"
+      />
+    ),
+    summary: "",
+    demoLink: "https://dwdev.netlify.app/",
+    repoLink: "",
+    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+  },
+  {
+    slug: "tax-clinic",
+    hero: (
+      <Image
+        alt="logo"
+        src={TaxClinicHero}
+        priority
+        className="object-cover rounded-md block w-full h-96"
+      />
+    ),
+    summary: "",
+    demoLink: "https://shining-light.netlify.app/",
+    repoLink: "",
+    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+  },
+  {
+    slug: "super-emoji",
+    hero: (
+      <Image
+        alt="logo"
+        src={EmojiHero}
+        priority
+        className="object-cover rounded-md block w-full h-96"
+      />
+    ),
+    summary: "",
+    demoLink: "https://emoji-party.netlify.app/",
     repoLink: "",
     techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
   },
