@@ -90,10 +90,11 @@ const PROJECT_META_DATA = [
         className="object-cover rounded-md block w-full h-96"
       />
     ),
-    summary: "",
+    summary:
+      "DW Interactive Dev is a website crafted during the early stages of my software career, serving as a platform for a software consulting service. Tailored to assist individuals and businesses, the site advertizes my specialization in building customized software applications, web apps, and website solutions",
     demoLink: "https://dwdev.netlify.app/",
-    repoLink: "",
-    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+    repoLink: "https://github.com/DwanW/DW-Dev",
+    techStack: ["React", "Node", "JavaScript", "CMS"],
   },
   {
     slug: "tax-clinic",
@@ -106,10 +107,11 @@ const PROJECT_META_DATA = [
         className="object-cover rounded-md block w-full h-96"
       />
     ),
-    summary: "",
+    summary:
+      "Tax Clinic is a user-friendly webpage crafted using Gatsby and stylized with Tailwind. Tailored for a government tax clinic organization, this platform is designed to assist individuals in efficiently managing their taxes. The simplicity of the interface ensures a seamless and accessible experience for users seeking professional guidance and support in handling their tax-related matters.",
     demoLink: "https://shining-light.netlify.app/",
-    repoLink: "",
-    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+    repoLink: "https://github.com/DwanW/tax-clinic",
+    techStack: ["React", "Tailwind", "JavaScript", "Gatsby"],
   },
   {
     slug: "super-emoji",
@@ -122,10 +124,11 @@ const PROJECT_META_DATA = [
         className="object-cover rounded-md block w-full h-96"
       />
     ),
-    summary: "",
+    summary:
+      "Super Emoji Party is an engaging web-based board game that leverages the boardgame.io framework, offering players a unique experience with randomly generated game boards. Each playthrough promises distinct challenges and excitement, making every game a fresh and dynamic adventure.",
     demoLink: "https://emoji-party.netlify.app/",
-    repoLink: "",
-    techStack: ["React", "Node", "JavaScript", "Python", "NoSQL", "AWS"],
+    repoLink: "https://github.com/DwanW/super-emoji-party",
+    techStack: ["React", "CSS", "JavaScript"],
   },
 ];
 
