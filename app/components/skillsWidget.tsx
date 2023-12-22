@@ -1,6 +1,19 @@
 "use client";
-import { faPython, faReact } from "@fortawesome/free-brands-svg-icons";
-import { faDatabase, faServer } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCss3,
+  faDev,
+  faJs,
+  faLinux,
+  faPython,
+  faReact,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faBrain,
+  faCog,
+  faDatabase,
+  faPaintBrush,
+  faServer,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Grid } from "@radix-ui/themes";
 import React from "react";
@@ -29,6 +42,54 @@ const SKILLS = [
     label: "Python",
     icon: (color: string | undefined) => (
       <FontAwesomeIcon icon={faPython} color={color} />
+    ),
+  },
+  {
+    label: "SDLC",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faDev} color={color} />
+    ),
+  },
+  {
+    label: "JavaScript",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faJs} color={color} />
+    ),
+  },
+  {
+    label: "Python",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faPython} color={color} />
+    ),
+  },
+  {
+    label: "CI/CD",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faCog} color={color} />
+    ),
+  },
+  {
+    label: "Linux System",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faLinux} color={color} />
+    ),
+  },
+  {
+    label: "Css",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faCss3} color={color} />
+    ),
+  },
+  {
+    label: "ML/NLP",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faBrain} color={color} />
+    ),
+  },
+  {
+    label: "UI/UX",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faPaintBrush} color={color} />
     ),
   },
 ];
