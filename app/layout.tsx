@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
 import { Container, Theme } from "@radix-ui/themes";
-import Navigation from "./components/navigation";
+import { getServerSession } from "next-auth";
+import SessionProvider from "./components/sessionProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,32 +15,35 @@ export const metadata: Metadata = {
   description: "personal portfolio",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Theme
-          accentColor="blue"
-          grayColor="gray"
-          panelBackground="solid"
-          scaling="100%"
-          radius="full"
-          appearance="dark"
-        >
-          <Container
-            px={{
-              initial: "4",
-            }}
-            className="pt-12 sm:pt-20 relative"
+        <SessionProvider session={session}>
+          <Theme
+            accentColor="blue"
+            grayColor="gray"
+            panelBackground="solid"
+            scaling="100%"
+            radius="full"
+            appearance="dark"
           >
-            <Navigation />
-            {children}
-          </Container>
-        </Theme>
+            <Container
+              px={{
+                initial: "4",
+              }}
+              className="pt-12 sm:pt-20 relative"
+            >
+              {children}
+            </Container>
+          </Theme>
+        </SessionProvider>
       </body>
     </html>
   );
