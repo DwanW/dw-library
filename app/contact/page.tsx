@@ -2,10 +2,19 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Flex, Grid, Section, Text } from "@radix-ui/themes";
 import Link from "next/link";
+import Breadcrumb from "../components/breadcrumb";
 
 export default function Page() {
   return (
     <Grid columns={{ initial: "1" }} gap="2" className="max-w-lg mx-auto">
+      <Breadcrumb
+        homeElement={"Home"}
+        separator={<span className="mx-2">|</span>}
+        activeClasses="text-blue-500"
+        containerClasses="flex py-5 text-xs"
+        listClasses="hover:underline font-bold"
+        capitalizeLinks
+      />
       <Section size="1">
         <Box mb="2">
           <Text weight="bold">What am I up to?</Text>

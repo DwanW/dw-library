@@ -19,6 +19,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
+import Breadcrumb from "@/app/components/breadcrumb";
 
 type Props = {
   params: {
@@ -136,102 +137,108 @@ export default function Page({ params }: Props) {
   const { slug } = params;
   const projectData = PROJECT_META_DATA.find((p) => p.slug === slug);
   return (
-    <Grid columns={{ initial: "8" }}>
-      <Flex
-        direction="column"
-        gap="3"
-        pt={{
-          initial: "2",
-          xs: "0",
-        }}
-        px={{
-          initial: "2",
-          md: "8",
-        }}
-        pb={{
-          initial: "0",
-          xs: "0",
-        }}
-        my={{
-          initial: "0",
-          xs: "8",
-        }}
-        justify="center"
-        className="col-span-8 md:col-span-5"
-      >
-        <Section size="1">
-          <Box>{projectData?.hero}</Box>
-        </Section>
-        <Section size="1">
-          <Box>
-            <Text>{projectData?.summary}</Text>
-          </Box>
-        </Section>
-      </Flex>
-      <Flex
-        direction="column"
-        gap="3"
-        pt={{
-          initial: "2",
-          xs: "0",
-        }}
-        px={{
-          initial: "2",
-          md: "8",
-        }}
-        my={{
-          initial: "0",
-          xs: "8",
-        }}
-        className="col-span-8 md:col-span-3 md:border-l pb-28 sm:pb-0 md:border-l-gray-600"
-      >
-        <Section size="1">
-          <Text
-            size={{
-              initial: "8",
-            }}
-            weight="bold"
-          >
-            {projectData?.title}
-          </Text>
-        </Section>
-        <Section size="1">
-          {projectData?.demoLink && (
+    <>
+      <Breadcrumb
+        homeElement={"Home"}
+        separator={<span className="mx-2">|</span>}
+        activeClasses="text-blue-500"
+        containerClasses="flex py-5 text-xs"
+        listClasses="hover:underline font-bold"
+        capitalizeLinks
+      />
+      <Grid columns={{ initial: "8" }}>
+        <Flex
+          direction="column"
+          gap="3"
+          pr={{
+            initial: "2",
+            md: "8",
+          }}
+          pb={{
+            initial: "0",
+            xs: "0",
+          }}
+          my={{
+            initial: "0",
+            xs: "8",
+          }}
+          justify="center"
+          className="col-span-8 md:col-span-5"
+        >
+          <Section size="1">
+            <Box>{projectData?.hero}</Box>
+          </Section>
+          <Section size="1">
             <Box>
-              <Link href={projectData?.demoLink} target="_blank">
-                <Button variant="surface">
-                  <FontAwesomeIcon icon={faLink} />
-                  VIEW DEMO
-                </Button>
-              </Link>
+              <Text>{projectData?.summary}</Text>
             </Box>
-          )}
-          {projectData?.repoLink && (
-            <Box mt="2">
-              <Link href={projectData?.repoLink} target="_blank">
-                <Button variant="surface">
-                  <FontAwesomeIcon icon={faGithub} />
-                  VIEW REPO
-                </Button>
-              </Link>
-            </Box>
-          )}
-          {!projectData?.demoLink && !projectData?.repoLink && (
-            <Text color="gray" size="1">
-              Project not available to view
+          </Section>
+        </Flex>
+        <Flex
+          direction="column"
+          gap="3"
+          pt={{
+            initial: "2",
+            xs: "0",
+          }}
+          px={{
+            initial: "2",
+            md: "8",
+          }}
+          my={{
+            initial: "0",
+            xs: "8",
+          }}
+          className="col-span-8 md:col-span-3 md:border-l pb-28 sm:pb-0 md:border-l-gray-600"
+        >
+          <Section size="1">
+            <Text
+              size={{
+                initial: "8",
+              }}
+              weight="bold"
+            >
+              {projectData?.title}
             </Text>
-          )}
-        </Section>
-        <Section size="1">
-          <Box height="5">
-            {projectData?.techStack.map((t, idx) => (
-              <Badge key={idx} size="2" className="m-1">
-                {t}
-              </Badge>
-            ))}
-          </Box>
-        </Section>
-      </Flex>
-    </Grid>
+          </Section>
+          <Section size="1">
+            {projectData?.demoLink && (
+              <Box>
+                <Link href={projectData?.demoLink} target="_blank">
+                  <Button variant="surface">
+                    <FontAwesomeIcon icon={faLink} />
+                    VIEW DEMO
+                  </Button>
+                </Link>
+              </Box>
+            )}
+            {projectData?.repoLink && (
+              <Box mt="2">
+                <Link href={projectData?.repoLink} target="_blank">
+                  <Button variant="surface">
+                    <FontAwesomeIcon icon={faGithub} />
+                    VIEW REPO
+                  </Button>
+                </Link>
+              </Box>
+            )}
+            {!projectData?.demoLink && !projectData?.repoLink && (
+              <Text color="gray" size="1">
+                Project not available to view
+              </Text>
+            )}
+          </Section>
+          <Section size="1">
+            <Box height="5">
+              {projectData?.techStack.map((t, idx) => (
+                <Badge key={idx} size="2" className="m-1">
+                  {t}
+                </Badge>
+              ))}
+            </Box>
+          </Section>
+        </Flex>
+      </Grid>
+    </>
   );
 }

@@ -1,14 +1,5 @@
-import {
-  Badge,
-  Box,
-  Flex,
-  TabsContent,
-  TabsList,
-  TabsRoot,
-  TabsTrigger,
-  Text,
-} from "@radix-ui/themes";
-import ProjectList from "../components/projectList";
+import { Badge, Box, Flex } from "@radix-ui/themes";
+import ProjectList from "../components/portfolio/projectList";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
@@ -19,8 +10,9 @@ import ChatbotHero from "public/project/chatbot.png";
 import TaxClinicHero from "public/project/taxclinic.png";
 import DwanDevHero from "public/project/dwdev.png";
 import EmojiHero from "public/project/emojiparty.png";
+import Breadcrumb from "../components/breadcrumb";
 
-const WORK_LIST = [
+const LIST = [
   {
     path: "/project/skip",
     title: "SkipTheDepot",
@@ -47,7 +39,7 @@ const WORK_LIST = [
   {
     path: "/project/dawgs",
     title: "Okotoks Dawgs",
-    description: "Okotoks Dawgs",
+    description: "Okotoks Dawgs Official Website",
     logo: (
       <Image
         alt="logo"
@@ -70,7 +62,7 @@ const WORK_LIST = [
   {
     path: "/project/aichat",
     title: "AI Chat",
-    description: "The Bottle Depot That Comes To You",
+    description: "Cross platform AI chat service",
     logo: (
       <Image
         alt="logo"
@@ -90,9 +82,6 @@ const WORK_LIST = [
       </Flex>
     ),
   },
-];
-
-const HOBBY_LIST = [
   {
     path: "/project/dwdev",
     title: "DW Interactive Dev",
@@ -143,7 +132,7 @@ const HOBBY_LIST = [
   {
     path: "/project/super-emoji",
     title: "Super Emoji Party",
-    description: "A light hearted board game support up to 3 players",
+    description: "A light hearted web based board game support up to 3 players",
     logo: (
       <Image
         alt="logo"
@@ -167,25 +156,18 @@ const HOBBY_LIST = [
 
 export default function Page() {
   return (
-    <Box height="auto">
-      <TabsRoot defaultValue="work">
-        <TabsList size="1">
-          <TabsTrigger value="work">Work</TabsTrigger>
-          <TabsTrigger value="personal">Personal</TabsTrigger>
-        </TabsList>
-
-        <Box px="4" pt="3" pb="2">
-          <TabsContent value="work">
-            <ProjectList list={WORK_LIST} />
-          </TabsContent>
-
-          <TabsContent value="personal">
-            <Text size="2">
-              <ProjectList list={HOBBY_LIST} />
-            </Text>
-          </TabsContent>
-        </Box>
-      </TabsRoot>
-    </Box>
+    <>
+      <Breadcrumb
+        homeElement={"Home"}
+        separator={<span className="mx-2">|</span>}
+        activeClasses="text-blue-500"
+        containerClasses="flex py-5 text-xs"
+        listClasses="hover:underline font-bold"
+        capitalizeLinks
+      />
+      <Box height="auto">
+        <ProjectList list={LIST} />
+      </Box>
+    </>
   );
 }

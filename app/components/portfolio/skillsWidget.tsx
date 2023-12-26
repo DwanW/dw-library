@@ -75,7 +75,7 @@ const SKILLS = [
     ),
   },
   {
-    label: "Css",
+    label: "CSS",
     icon: (color: string | undefined) => (
       <FontAwesomeIcon icon={faCss3} color={color} />
     ),
