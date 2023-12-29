@@ -13,19 +13,24 @@ import {
   TextFieldInput,
 } from "@radix-ui/themes";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AddTagDialog() {
+  const router = useRouter();
+
   const [name, setName] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async () => {
     if (!name) {
       alert("name is required");
+      return;
     }
     const res = await createTag({ name });
     if (res) {
       setOpen(false);
       setName("");
+      router.refresh();
     }
   };
 
@@ -58,7 +63,7 @@ export default function AddTagDialog() {
 
         <Flex gap="3" mt="4" justify="end">
           <DialogClose>
-            <Button variant="soft" color="gray">
+            <Button variant="soft" color="gray" onClick={() => setOpen(false)}>
               Cancel
             </Button>
           </DialogClose>

@@ -17,8 +17,8 @@ export type Poll = {
   };
 };
 
-export default async function pollList() {
-  const polls = await getPolls();
+export default async function PollList() {
+  const data = await getPolls();
   return (
     <Grid
       columns={{
@@ -38,8 +38,12 @@ export default async function pollList() {
         initial: "8",
       }}
     >
-      {(polls || []).map((poll: Poll, idx: Key) => (
-        <Link key={idx} href={`${poll._id}`} className="flex justify-center">
+      {data.polls.map((poll: Poll, idx: Key) => (
+        <Link
+          key={idx}
+          href={`vote-app/${poll._id}`}
+          className="flex justify-center"
+        >
           <Card className="w-full">
             <PollListItem poll={poll} />
           </Card>

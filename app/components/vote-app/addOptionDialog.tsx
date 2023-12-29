@@ -1,5 +1,5 @@
 "use client";
-import { createPoll, getTags } from "@/app/libs/functions";
+import { createOption, getTags } from "@/app/libs/functions";
 import {
   Button,
   DialogClose,
@@ -15,14 +15,13 @@ import {
   SelectLabel,
   SelectRoot,
   SelectTrigger,
-  Switch,
   Text,
   TextFieldInput,
 } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AddPollDialog() {
+export default function AddOptionDialog() {
   const router = useRouter();
   type Tag = {
     _id: string;
@@ -32,33 +31,30 @@ export default function AddPollDialog() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [isPrivate, setIsPrivate] = useState(false);
-  const [passPhrase, setPassPhrase] = useState("");
+  const [link, setLink] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   const [tag, setTag] = useState<undefined | string>(undefined);
 
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async () => {
-    if (!title || !endDate || !tag) {
-      alert("name, end date and tag are required");
+    if (!title || !tag) {
+      alert("title and tag are required");
       return;
     }
-    const res = await createPoll({
+    const res = await createOption({
       title,
       description,
-      endDate: new Date(endDate),
-      isPrivate,
-      passPhrase,
+      link,
+      imgUrl,
       tag,
     });
     if (res) {
       setOpen(false);
       setTitle("");
       setDescription("");
-      setEndDate("");
-      setIsPrivate(false);
-      setPassPhrase("");
+      setLink("");
+      setImgUrl("");
       setTag(undefined);
       router.refresh();
     }
@@ -75,13 +71,13 @@ export default function AddPollDialog() {
   return (
     <DialogRoot open={open}>
       <DialogTrigger>
-        <Button onClick={() => setOpen(true)}>New Poll</Button>
+        <Button onClick={() => setOpen(true)}>New Option</Button>
       </DialogTrigger>
 
       <DialogContent style={{ maxWidth: 450 }}>
-        <DialogTitle>Add New Poll</DialogTitle>
+        <DialogTitle>Add New Option</DialogTitle>
         <DialogDescription size="2" mb="4">
-          Create a New Poll
+          Create a New Option
         </DialogDescription>
 
         <Flex direction="column" gap="3">
@@ -92,7 +88,7 @@ export default function AddPollDialog() {
             <TextFieldInput
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Poll name"
+              placeholder="Option name"
             />
           </label>
           <label>
@@ -102,39 +98,29 @@ export default function AddPollDialog() {
             <TextFieldInput
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Poll description"
-            />
-          </label>
-          <label>
-            <Text as="div" size="2" mb="1" weight="bold">
-              End Date
-            </Text>
-            <TextFieldInput
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              type="date"
-              defaultValue=""
+              placeholder="Option description"
             />
           </label>
 
-          <Text as="label" size="2">
-            <Flex gap="2">
-              <Switch
-                defaultChecked={isPrivate}
-                onCheckedChange={(checked) => setIsPrivate(!checked)}
-              />{" "}
-              Private Poll
-            </Flex>
-          </Text>
+          <label>
+            <Text as="div" size="2" mb="1" weight="bold">
+              Link
+            </Text>
+            <TextFieldInput
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder="Link"
+            />
+          </label>
 
           <label>
             <Text as="div" size="2" mb="1" weight="bold">
-              Passphrase
+              Image Url
             </Text>
             <TextFieldInput
-              value={passPhrase}
-              onChange={(e) => setPassPhrase(e.target.value)}
-              placeholder="Passphrase"
+              value={imgUrl}
+              onChange={(e) => setImgUrl(e.target.value)}
+              placeholder="Link"
             />
           </label>
 

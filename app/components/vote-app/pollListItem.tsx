@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from "@radix-ui/themes";
 import { Poll } from "./pollList";
 
-export default function pollListItem({ poll }: { poll: Poll }) {
+export default function PollListItem({ poll }: { poll: Poll }) {
   return (
     <Box className="relative pt-4 px-1 h-32">
       <Flex direction="column" className="h-full">
@@ -13,7 +13,6 @@ export default function pollListItem({ poll }: { poll: Poll }) {
             {poll.description}
           </Text>
         </Box>
-        {poll?.tag?.name}
       </Flex>
     </Box>
   );

@@ -13,6 +13,7 @@ const voteSchema = new Schema(
   }
 );
 
-const Vote = mongoose.models.vote || mongoose.model("Vote", voteSchema);
+const Vote = mongoose.models.Vote || mongoose.model("Vote", voteSchema);
 
 export default Vote;
+
