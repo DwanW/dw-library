@@ -43,6 +43,7 @@ export default function AddVoteDialog({ pollId }: { pollId: string }) {
   const [options, setOptions] = useState<Option[]>([]);
 
   const [myVote, setMyVote] = useState<Vote | undefined>(undefined);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [firstOption, setFirstOption] = useState<string | undefined>(undefined);
   const [secondOption, setSecondOption] = useState<string | undefined>(
     undefined
@@ -81,14 +82,15 @@ export default function AddVoteDialog({ pollId }: { pollId: string }) {
       const voteData = await getVoteByEmail(userEmail);
       setOptions(data.options);
       setMyVote(voteData.vote);
+      setDataLoaded(true);
     })();
   }, []);
 
   return (
     <DialogRoot open={open}>
       <DialogTrigger>
-        <Button onClick={() => setOpen(true)} disabled={!!myVote}>
-          {myVote ? "Voted" : "Cast Vote"}
+        <Button onClick={() => setOpen(true)} disabled={!!myVote || !false}>
+          {dataLoaded ? (myVote ? "Voted" : "Cast Vote") : "loading"}
         </Button>
       </DialogTrigger>
 

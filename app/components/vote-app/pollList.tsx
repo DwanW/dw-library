@@ -11,10 +11,7 @@ export type Poll = {
   endDate: Date;
   private: Boolean;
   passPhrase: String;
-  tag: {
-    _id: String;
-    name: String;
-  };
+  tag: String;
 };
 
 export default async function PollList() {
