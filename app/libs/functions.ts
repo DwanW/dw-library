@@ -18,6 +18,7 @@ export const createPoll = async (newPoll: NewPoll) => {
         "Content-type": "application/json",
       },
       body: JSON.stringify(newPoll),
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error("failed to create poll");
@@ -83,6 +84,7 @@ export const createTag = async (newTag: { name: String }) => {
         "Content-type": "application/json",
       },
       body: JSON.stringify(newTag),
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error("failed to create tag");
@@ -110,6 +112,7 @@ export const createOption = async (newOption: NewOption) => {
         "Content-type": "application/json",
       },
       body: JSON.stringify(newOption),
+      cache: "no-store",
     });
     if (!res.ok) {
       throw new Error("failed to create option");
