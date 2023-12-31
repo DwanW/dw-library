@@ -37,8 +37,8 @@ export async function GET(req: NextRequest, { params }: { params: any }) {
   const poll: Poll | null = await Poll.findById(id).lean();
   // calculate result if currentDate is greater or equal to the poll endDate
   const currentDate = new Date().toISOString();
+  const votes: Vote[] = await Vote.find({ poll: id }).lean();
   if (poll && poll?.endDate.toISOString() <= currentDate) {
-    const votes: Vote[] = await Vote.find({ poll: id }).lean();
     const options: Option[] = await Option.find({
       tag: poll.tag,
     }).lean();
@@ -52,9 +52,9 @@ export async function GET(req: NextRequest, { params }: { params: any }) {
       w[1],
     ]);
     return NextResponse.json(
-      { poll, result: resultWithPopulatedOptions },
+      { poll, result: resultWithPopulatedOptions, count: votes.length },
       { status: 200 }
     );
   }
-  return NextResponse.json({ poll }, { status: 200 });
+  return NextResponse.json({ poll, count: votes.length }, { status: 200 });
 }

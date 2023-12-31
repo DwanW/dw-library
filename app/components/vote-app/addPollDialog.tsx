@@ -33,8 +33,8 @@ export default function AddPollDialog() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [isPrivate, setIsPrivate] = useState(false);
-  const [passPhrase, setPassPhrase] = useState("");
+  // const [isPrivate, setIsPrivate] = useState(false);
+  // const [passPhrase, setPassPhrase] = useState("");
   const [tag, setTag] = useState<undefined | string>(undefined);
 
   const [open, setOpen] = useState(false);
@@ -48,8 +48,8 @@ export default function AddPollDialog() {
       title,
       description,
       endDate: new Date(endDate),
-      isPrivate,
-      passPhrase,
+      // isPrivate,
+      // passPhrase,
       tag,
     });
     if (res) {
@@ -57,8 +57,8 @@ export default function AddPollDialog() {
       setTitle("");
       setDescription("");
       setEndDate("");
-      setIsPrivate(false);
-      setPassPhrase("");
+      // setIsPrivate(false);
+      // setPassPhrase("");
       setTag(undefined);
       router.refresh();
     }
@@ -75,7 +75,9 @@ export default function AddPollDialog() {
   return (
     <DialogRoot open={open}>
       <DialogTrigger>
-        <Button onClick={() => setOpen(true)}>New Poll</Button>
+        <Button variant="outline" color="grass" onClick={() => setOpen(true)}>
+          New Poll
+        </Button>
       </DialogTrigger>
 
       <DialogContent style={{ maxWidth: 450 }}>
@@ -117,7 +119,7 @@ export default function AddPollDialog() {
             />
           </label>
 
-          <Text as="label" size="2">
+          {/* <Text as="label" size="2">
             <Flex gap="2">
               <Switch
                 defaultChecked={isPrivate}
@@ -125,9 +127,9 @@ export default function AddPollDialog() {
               />{" "}
               Private Poll
             </Flex>
-          </Text>
+          </Text> */}
 
-          <label>
+          {/* <label>
             <Text as="div" size="2" mb="1" weight="bold">
               Passphrase
             </Text>
@@ -136,7 +138,7 @@ export default function AddPollDialog() {
               onChange={(e) => setPassPhrase(e.target.value)}
               placeholder="Passphrase"
             />
-          </label>
+          </label> */}
 
           <SelectRoot value={tag} onValueChange={(v) => setTag(v)}>
             <SelectTrigger placeholder="Pick a Tag" />

@@ -4,8 +4,8 @@ type NewPoll = {
   title: String;
   description: String;
   endDate: Date;
-  isPrivate: Boolean;
-  passPhrase: String;
+  // isPrivate: Boolean;
+  // passPhrase: String;
   tag: String | undefined;
 };
 
@@ -138,6 +138,21 @@ export const getOptions = async () => {
   }
 };
 
+export const getOptionsByTag = async (tagId: string) => {
+  try {
+    const API_URL = process.env.API_URL;
+    const res = await fetch(`${API_URL}/option/tag/${tagId}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      throw new Error("failed to fetch options");
+    }
+    return res.json();
+  } catch (e) {
+    console.log("Error Loading options: ", e);
+  }
+};
+
 type NewVote = {
   email: String;
   poll: String;
@@ -166,11 +181,16 @@ export const createVote = async (newVote: NewVote) => {
     console.log("Error creating vote: ", e);
   }
 };
-export const getVoteByEmail = async (email: string) => {
+export const getVoteByEmailAndPoll = async (email: string, poll: string) => {
   try {
     const API_URL = process.env.API_URL;
     const res = await fetch(`${API_URL}/vote/${email}`, {
       cache: "no-store",
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ poll }),
     });
     if (!res.ok) {
       throw new Error("failed to fetch vote");

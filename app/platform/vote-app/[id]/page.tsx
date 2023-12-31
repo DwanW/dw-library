@@ -1,6 +1,8 @@
 import AddVoteDialog from "@/app/components/vote-app/addVoteDialog";
 import { Poll } from "@/app/components/vote-app/pollList";
 import { getPollById } from "@/app/libs/functions";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Flex, Grid, Section, Text } from "@radix-ui/themes";
 
 type Props = {
@@ -29,9 +31,9 @@ export default async function Page({ params }: Props) {
   const {
     poll,
     result,
-  }: { poll: Poll; result: [Option, Vote[]][] | undefined } = await getPollById(
-    id
-  );
+    count,
+  }: { poll: Poll; result: [Option, Vote[]][] | undefined; count: number } =
+    await getPollById(id);
   return (
     <Grid columns={{ initial: "8" }}>
       <Flex
@@ -50,32 +52,86 @@ export default async function Page({ params }: Props) {
           xs: "8",
         }}
         justify="center"
-        className="col-span-8 md:col-span-5"
+        className="col-span-8"
       >
         <Section size="1">
-          <Box>{poll.title}</Box>
           <Box>
-            <AddVoteDialog pollId={id} />
+            <Text size="5" className="capitalize" weight="bold" color="gold">
+              {poll.title}
+            </Text>
+          </Box>
+
+          <Box>
+            <Text size="2">{poll.description}</Text>
+          </Box>
+
+          <Box mt="4">
+            <AddVoteDialog
+              pollId={id}
+              pollTag={poll.tag}
+              pollEndDate={poll.endDate}
+            />
           </Box>
         </Section>
+
         <Section size="1">
           <Box>
-            <Text>current result</Text>
+            <Text size="3">
+              Number of votes collected:{" "}
+              <Text weight="bold" color="crimson">
+                {count}
+              </Text>
+            </Text>
           </Box>
           <Box>
-            {result ? (
-              result.map((winner, idx) => (
-                <Box key={idx}>
-                  <Text>
-                    {idx + 1}. {winner[0]?.title}
-                  </Text>
-                </Box>
-              ))
-            ) : (
-              <Text>No results available</Text>
-            )}
+            <Text size="3">
+              Minimum Number of votes to win:{" "}
+              <Text weight="bold" color="crimson">
+                {count < 3
+                  ? "Not enough votes for poll"
+                  : Math.floor(count / 3)}
+              </Text>
+            </Text>
           </Box>
         </Section>
+        {result ? (
+          <Section size="1">
+            <Box>
+              <Text size="3" weight="bold">
+                Current Result:
+              </Text>
+            </Box>
+            <Box mt="4">
+              {result.map((winner, idx) => (
+                <Flex align="center" mb="2" key={idx}>
+                  <Box display="inline" mr="2" width="4" height="4">
+                    <FontAwesomeIcon
+                      icon={faCrown}
+                      size="xs"
+                      color={
+                        idx === 0
+                          ? "#FFD700"
+                          : idx === 1
+                          ? "#C0C0C0"
+                          : "#CD7F32"
+                      }
+                    />
+                  </Box>
+                  <Text size="1" weight="bold" color="brown">
+                    {winner[0]?.title}:{" "}
+                    <Text color="indigo">
+                      {((winner[1].length / count) * 100).toLocaleString()}%
+                    </Text>
+                  </Text>
+                </Flex>
+              ))}
+            </Box>
+          </Section>
+        ) : (
+          <Section size="1">
+            <Text>No results available</Text>
+          </Section>
+        )}
       </Flex>
     </Grid>
   );

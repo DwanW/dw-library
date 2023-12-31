@@ -1,5 +1,9 @@
 "use client";
-import { createVote, getOptions, getVoteByEmail } from "@/app/libs/functions";
+import {
+  createVote,
+  getOptionsByTag,
+  getVoteByEmailAndPoll,
+} from "@/app/libs/functions";
 import {
   Button,
   DialogClose,
@@ -33,12 +37,21 @@ type Vote = {
   thirdOption: string | undefined;
 };
 
-export default function AddVoteDialog({ pollId }: { pollId: string }) {
+export default function AddVoteDialog({
+  pollId,
+  pollTag,
+  pollEndDate,
+}: {
+  pollId: string;
+  pollTag: string;
+  pollEndDate: string;
+}) {
   const { data: session } = useSession();
   const userEmail = session?.user?.email;
   if (!userEmail) {
     redirect("/api/auth/signin");
   }
+  const currentDate = new Date().toISOString();
   const router = useRouter();
   const [options, setOptions] = useState<Option[]>([]);
 
@@ -78,8 +91,8 @@ export default function AddVoteDialog({ pollId }: { pollId: string }) {
 
   useEffect(() => {
     (async () => {
-      const data = await getOptions();
-      const voteData = await getVoteByEmail(userEmail);
+      const data = await getOptionsByTag(pollTag);
+      const voteData = await getVoteByEmailAndPoll(userEmail, pollId);
       setOptions(data.options);
       setMyVote(voteData.vote);
       setDataLoaded(true);
@@ -89,8 +102,19 @@ export default function AddVoteDialog({ pollId }: { pollId: string }) {
   return (
     <DialogRoot open={open}>
       <DialogTrigger>
-        <Button onClick={() => setOpen(true)} disabled={!!myVote || !false}>
-          {dataLoaded ? (myVote ? "Voted" : "Cast Vote") : "loading"}
+        <Button
+          variant="outline"
+          color="grass"
+          onClick={() => setOpen(true)}
+          disabled={!!myVote || !dataLoaded || pollEndDate < currentDate}
+        >
+          {pollEndDate < currentDate
+            ? "Poll Ended"
+            : dataLoaded
+            ? myVote
+              ? "Voted"
+              : "Cast Vote"
+            : "loading"}
         </Button>
       </DialogTrigger>
 
@@ -102,11 +126,21 @@ export default function AddVoteDialog({ pollId }: { pollId: string }) {
 
         <Flex direction="column" gap="3">
           <SelectRoot
+            key={firstOption}
             value={firstOption}
-            onValueChange={(v) => setFirstOption(v)}
+            onValueChange={(v) => {
+              setFirstOption(v);
+              if (v === secondOption) {
+                setSecondOption(undefined);
+                setThirdOption(undefined);
+              }
+              if (v === thirdOption) {
+                setThirdOption(undefined);
+              }
+            }}
           >
             <SelectTrigger placeholder="Pick First Option" />
-            <SelectContent>
+            <SelectContent position="popper">
               <SelectGroup>
                 <SelectLabel>Options</SelectLabel>
                 {options.map((o, idx) => (
@@ -119,35 +153,51 @@ export default function AddVoteDialog({ pollId }: { pollId: string }) {
           </SelectRoot>
 
           <SelectRoot
+            key={secondOption}
             value={secondOption}
-            onValueChange={(v) => setSecondOption(v)}
+            onValueChange={(v) => {
+              setSecondOption(v);
+              if (v === thirdOption) {
+                setThirdOption(undefined);
+              }
+            }}
+            disabled={!firstOption}
           >
             <SelectTrigger placeholder="Pick Second Option" />
-            <SelectContent>
+            <SelectContent position="popper">
               <SelectGroup>
                 <SelectLabel>Options</SelectLabel>
-                {options.map((o, idx) => (
-                  <SelectItem key={o._id} value={o._id}>
-                    {o.title}
-                  </SelectItem>
-                ))}
+                {options.map(
+                  (o, idx) =>
+                    o._id !== firstOption && (
+                      <SelectItem key={o._id} value={o._id}>
+                        {o.title}
+                      </SelectItem>
+                    )
+                )}
               </SelectGroup>
             </SelectContent>
           </SelectRoot>
 
           <SelectRoot
+            key={thirdOption}
             value={thirdOption}
             onValueChange={(v) => setThirdOption(v)}
+            disabled={!secondOption}
           >
             <SelectTrigger placeholder="Pick Third Option" />
-            <SelectContent>
+            <SelectContent position="popper">
               <SelectGroup>
                 <SelectLabel>Options</SelectLabel>
-                {options.map((o, idx) => (
-                  <SelectItem key={o._id} value={o._id}>
-                    {o.title}
-                  </SelectItem>
-                ))}
+                {options.map(
+                  (o, idx) =>
+                    o._id !== firstOption &&
+                    o._id !== secondOption && (
+                      <SelectItem key={o._id} value={o._id}>
+                        {o.title}
+                      </SelectItem>
+                    )
+                )}
               </SelectGroup>
             </SelectContent>
           </SelectRoot>

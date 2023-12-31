@@ -5,8 +5,8 @@ const pollSchema = new Schema(
     title: String,
     description: String,
     endDate: Date,
-    isPrivate: Boolean,
-    passPhrase: String,
+    // isPrivate: Boolean,
+    // passPhrase: String,
     tag: { type: Schema.Types.ObjectId, ref: "Tag" },
     // isRecurring: Boolean, TODO: add recurring feature
   },
