@@ -1,4 +1,5 @@
 "use client";
+import { Box, Button, Flex } from "@radix-ui/themes";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function AuthButton() {
@@ -6,17 +7,19 @@ export default function AuthButton() {
 
   if (session) {
     return (
-      <>
-        {session?.user?.name} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
+      <Flex justify={"end"} align={"center"} gap="3">
+        <Box>{session?.user?.name}</Box>
+        <Box>
+          <Button onClick={() => signOut()}>Sign out</Button>
+        </Box>
+      </Flex>
     );
   }
 
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <Flex justify={"end"} align={"center"} gap="3">
+      <Box>Sign in to visit platform apps</Box>
+      <Button onClick={() => signIn()}>Sign in</Button>
+    </Flex>
   );
 }
