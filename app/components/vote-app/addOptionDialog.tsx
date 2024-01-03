@@ -71,7 +71,13 @@ export default function AddOptionDialog() {
   return (
     <DialogRoot open={open}>
       <DialogTrigger>
-        <Button onClick={() => setOpen(true)}>New Option</Button>
+        <Button
+          variant="outline"
+          color="green"
+          onClick={() => setOpen(true)}
+        >
+          New Option
+        </Button>
       </DialogTrigger>
 
       <DialogContent style={{ maxWidth: 450 }}>

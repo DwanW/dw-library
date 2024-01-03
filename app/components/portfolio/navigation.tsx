@@ -6,6 +6,7 @@ import {
   faHome,
   faBriefcase,
   faPaperPlane,
+  faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { faDev } from "@fortawesome/free-brands-svg-icons";
 import { usePathname } from "next/navigation";
@@ -37,6 +38,13 @@ const navData = [
     link: "/contact",
     icon: (color: string | undefined) => (
       <FontAwesomeIcon icon={faPaperPlane} color={color} />
+    ),
+  },
+  {
+    label: "Platform",
+    link: "/platform",
+    icon: (color: string | undefined) => (
+      <FontAwesomeIcon icon={faLayerGroup} color={color} />
     ),
   },
 ];

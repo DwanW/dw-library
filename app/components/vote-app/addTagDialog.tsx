@@ -37,7 +37,9 @@ export default function AddTagDialog() {
   return (
     <DialogRoot open={open}>
       <DialogTrigger>
-        <Button onClick={() => setOpen(true)}>New Tag</Button>
+        <Button variant="outline" color="green" onClick={() => setOpen(true)}>
+          New Tag
+        </Button>
       </DialogTrigger>
 
       <DialogContent style={{ maxWidth: 450 }}>
