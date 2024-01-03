@@ -13,17 +13,25 @@ type Option = {
   _id: ObjectId;
 };
 
-/**
- * STV algorithm
- * @param votes
- * @returns [string, Vote[]][]
- */
-export const getPollResult = (votes: Vote[], options: Option[]) => {
+type VoteStats = {
+  [key: string]: {
+    firstOption: number;
+    secondOption: number;
+    thirdOption: number;
+  };
+};
+
+type Winners = [string, Vote[]][];
+
+export const getPollResult = (
+  votes: Vote[],
+  options: Option[]
+): { winners: Winners; voteStats: VoteStats } => {
   if (votes.length < 3) {
     // minimum number of votes required to process the result.
-    return [];
+    return { winners: [], voteStats: {} };
   }
-  let winners: [string, Vote[]][] = [];
+  let winners: Winners = [];
   let losers = [];
   let totalVotesNeededToWin = Math.floor(votes.length / 3);
 
@@ -35,16 +43,32 @@ export const getPollResult = (votes: Vote[], options: Option[]) => {
     [key: string]: Vote[];
   } = {};
 
+  let voteStats: VoteStats = {};
+
+  // initialize map
   options.forEach((o) => {
     initialVoteResult[o._id.toString()] = [];
+
+    voteStats[o._id.toString()] = {
+      firstOption: 0,
+      secondOption: 0,
+      thirdOption: 0,
+    };
   });
 
   ballot.forEach((v) => {
-    if (initialVoteResult[v.firstOption.toString()]) {
-      initialVoteResult[v.firstOption.toString()] =
-        initialVoteResult[v.firstOption.toString()].concat(v);
-    } else {
-      initialVoteResult[v.firstOption.toString()] = [v];
+    // firstOption
+    initialVoteResult[v.firstOption.toString()] =
+      initialVoteResult[v.firstOption.toString()].concat(v);
+
+    voteStats[v.firstOption.toString()].firstOption += 1;
+    //secondOption
+    if (v.secondOption !== undefined) {
+      voteStats[v.secondOption.toString()].secondOption += 1;
+    }
+    //thirdOption
+    if (v.thirdOption !== undefined) {
+      voteStats[v.thirdOption.toString()].thirdOption += 1;
     }
   });
 
@@ -141,5 +165,5 @@ export const getPollResult = (votes: Vote[], options: Option[]) => {
       result = result.sort((a, b) => a[1].length - b[1].length);
     }
   }
-  return winners;
+  return { winners, voteStats };
 };

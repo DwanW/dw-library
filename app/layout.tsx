@@ -24,7 +24,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} dark`}>
         <SessionProvider session={session}>
           <Theme
             accentColor="blue"
@@ -32,7 +32,7 @@ export default async function RootLayout({
             panelBackground="solid"
             scaling="100%"
             radius="full"
-            appearance="dark"
+            // appearance="dark"
           >
             <Container
               px={{

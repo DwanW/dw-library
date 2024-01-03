@@ -1,4 +1,5 @@
 import AddVoteDialog from "@/app/components/vote-app/addVoteDialog";
+import PollChart from "@/app/components/vote-app/pollChart";
 import { Poll } from "@/app/components/vote-app/pollList";
 import { getPollById } from "@/app/libs/functions";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
@@ -125,6 +126,9 @@ export default async function Page({ params }: Props) {
                   </Text>
                 </Flex>
               ))}
+            </Box>
+            <Box>
+              <PollChart />
             </Box>
           </Section>
         ) : (

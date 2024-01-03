@@ -42,7 +42,7 @@ export async function GET(req: NextRequest, { params }: { params: any }) {
     const options: Option[] = await Option.find({
       tag: poll.tag,
     }).lean();
-    const result = getPollResult(votes, options);
+    const { winners: result, voteStats } = getPollResult(votes, options);
 
     let optionsById: { [key: string]: Option } = {};
     options.forEach((option) => (optionsById[option._id.toString()] = option));
@@ -51,8 +51,15 @@ export async function GET(req: NextRequest, { params }: { params: any }) {
       optionsById[w[0]],
       w[1],
     ]);
+  
+
     return NextResponse.json(
-      { poll, result: resultWithPopulatedOptions, count: votes.length },
+      {
+        poll,
+        result: resultWithPopulatedOptions,
+        count: votes.length,
+        voteStats,
+      },
       { status: 200 }
     );
   }
