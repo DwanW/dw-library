@@ -51,14 +51,22 @@ export async function GET(req: NextRequest, { params }: { params: any }) {
       optionsById[w[0]],
       w[1],
     ]);
-  
+
+    const voteStatsWithPopulatedOptions = Object.entries(voteStats)
+      .sort(
+        (a, b) =>
+          b[1].firstOption - a[1].firstOption ||
+          b[1].secondOption - a[1].secondOption ||
+          b[1].thirdOption - a[1].thirdOption
+      )
+      .map((s) => [optionsById[s[0]], s[1]]);
 
     return NextResponse.json(
       {
         poll,
         result: resultWithPopulatedOptions,
         count: votes.length,
-        voteStats,
+        voteStats: voteStatsWithPopulatedOptions,
       },
       { status: 200 }
     );

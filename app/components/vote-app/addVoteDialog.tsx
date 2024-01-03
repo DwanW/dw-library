@@ -104,7 +104,7 @@ export default function AddVoteDialog({
       <DialogTrigger>
         <Button
           variant="outline"
-          color="grass"
+          color="green"
           onClick={() => setOpen(true)}
           disabled={!!myVote || !dataLoaded || pollEndDate < currentDate}
         >

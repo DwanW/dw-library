@@ -1,51 +1,45 @@
 "use client";
+import { VoteStats } from "@/app/platform/vote-app/[id]/page";
 import dynamic from "next/dynamic";
 import React from "react";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-export default function PollChart() {
-  const options = {
-    // chart: {
-    //   height: 500,
-    // },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    xaxis: {
-      categories: [
-        "Korea",
-        "Canada",
-        "Poland",
-        "Italy",
-        "France",
-        "Japan",
-        "China",
-      ],
-    },
-  };
+export default function PollChart({ voteStats }: { voteStats: VoteStats }) {
+  const categories = voteStats.map((s) => s[0].title);
+  const firstChoices = voteStats.map((s) => s[1].firstOption);
+  const secondChoices = voteStats.map((s) => s[1].secondOption);
+  const thirdChoices = voteStats.map((s) => s[1].thirdOption);
   const series = [
     {
       name: "first choice",
-      data: [30, 40, 45, 50, 49, 60, 70, 91],
+      data: firstChoices,
     },
     {
       name: "second choice",
-      data: [31, 41, 46, 51, 50, 61, 71, 92],
+      data: secondChoices,
     },
     {
       name: "third choice",
-      data: [31, 41, 46, 51, 50, 61, 71, 92],
+      data: thirdChoices,
     },
   ];
   return (
     <div className="text-black">
       <Chart
-        options={options}
+        options={{
+          plotOptions: {
+            bar: {
+              horizontal: true,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            categories: categories,
+            tickAmount: "dataPoints",
+          },
+        }}
         series={series}
         type="bar"
         height="500"

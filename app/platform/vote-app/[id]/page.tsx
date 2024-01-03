@@ -27,14 +27,29 @@ type Vote = {
   createdAt: string;
 };
 
+export type VoteStats = [
+  Option,
+  {
+    firstOption: number;
+    secondOption: number;
+    thirdOption: number;
+  }
+][];
+
 export default async function Page({ params }: Props) {
   const { id } = params;
   const {
     poll,
     result,
     count,
-  }: { poll: Poll; result: [Option, Vote[]][] | undefined; count: number } =
-    await getPollById(id);
+    voteStats,
+  }: {
+    poll: Poll;
+    result: [Option, Vote[]][] | undefined;
+    count: number;
+    voteStats: VoteStats;
+  } = await getPollById(id);
+
   return (
     <Grid columns={{ initial: "8" }}>
       <Flex
@@ -119,16 +134,13 @@ export default async function Page({ params }: Props) {
                     />
                   </Box>
                   <Text size="1" weight="bold" color="brown">
-                    {winner[0]?.title}:{" "}
-                    <Text color="indigo">
-                      {((winner[1].length / count) * 100).toLocaleString()}%
-                    </Text>
+                    {winner[0]?.title}
                   </Text>
                 </Flex>
               ))}
             </Box>
             <Box>
-              <PollChart />
+              <PollChart voteStats={voteStats} />
             </Box>
           </Section>
         ) : (

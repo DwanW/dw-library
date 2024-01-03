@@ -27,11 +27,7 @@ export default async function RootLayout({
       <body className={`${inter.className} dark`}>
         <SessionProvider session={session}>
           <Theme
-            accentColor="blue"
-            grayColor="gray"
-            panelBackground="solid"
-            scaling="100%"
-            radius="full"
+            radius="small"
             // appearance="dark"
           >
             <Container
