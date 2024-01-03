@@ -73,7 +73,10 @@ export const getPollResult = (
   });
 
   let result = Object.entries(initialVoteResult).sort(
-    (a, b) => a[1].length - b[1].length
+    (a, b) =>
+      a[1].length - b[1].length ||
+      b[1].reduce((t, v) => t + v.createdAt.getTime(), 0) -
+        a[1].reduce((t, v) => t + v.createdAt.getTime(), 0)
   );
   // Single Transferable Vote (STV) algorithm (In Place)
   while (result.length > 0) {
