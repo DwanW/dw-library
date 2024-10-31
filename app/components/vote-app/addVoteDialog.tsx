@@ -4,22 +4,7 @@ import {
   getOptionsByTag,
   getVoteByEmailAndPoll,
 } from "@/app/libs/functions";
-import {
-  Button,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-  Flex,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
-} from "@radix-ui/themes";
+import { Button, Dialog, Flex, Select } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { useRouter, redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -100,8 +85,8 @@ export default function AddVoteDialog({
   }, []);
 
   return (
-    <DialogRoot open={open}>
-      <DialogTrigger>
+    <Dialog.Root open={open}>
+      <Dialog.Trigger>
         <Button
           variant="outline"
           color="green"
@@ -116,16 +101,16 @@ export default function AddVoteDialog({
               : "Cast Vote"
             : "loading"}
         </Button>
-      </DialogTrigger>
+      </Dialog.Trigger>
 
-      <DialogContent style={{ maxWidth: 450 }}>
-        <DialogTitle>Cast Vote</DialogTitle>
-        <DialogDescription size="2" mb="4">
+      <Dialog.Content style={{ maxWidth: 450 }}>
+        <Dialog.Title>Cast Vote</Dialog.Title>
+        <Dialog.Description size="2" mb="4">
           Cast a Vote
-        </DialogDescription>
+        </Dialog.Description>
 
         <Flex direction="column" gap="3">
-          <SelectRoot
+          <Select.Root
             key={firstOption}
             value={firstOption}
             onValueChange={(v) => {
@@ -139,20 +124,20 @@ export default function AddVoteDialog({
               }
             }}
           >
-            <SelectTrigger placeholder="Pick First Option" />
-            <SelectContent position="popper">
-              <SelectGroup>
-                <SelectLabel>Options</SelectLabel>
+            <Select.Trigger placeholder="Pick First Option" />
+            <Select.Content position="popper">
+              <Select.Group>
+                <Select.Label>Options</Select.Label>
                 {options.map((o, idx) => (
-                  <SelectItem key={o._id} value={o._id}>
+                  <Select.Item key={o._id} value={o._id}>
                     {o.title}
-                  </SelectItem>
+                  </Select.Item>
                 ))}
-              </SelectGroup>
-            </SelectContent>
-          </SelectRoot>
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
 
-          <SelectRoot
+          <Select.Root
             key={secondOption}
             value={secondOption}
             onValueChange={(v) => {
@@ -163,57 +148,57 @@ export default function AddVoteDialog({
             }}
             disabled={!firstOption}
           >
-            <SelectTrigger placeholder="Pick Second Option" />
-            <SelectContent position="popper">
-              <SelectGroup>
-                <SelectLabel>Options</SelectLabel>
+            <Select.Trigger placeholder="Pick Second Option" />
+            <Select.Content position="popper">
+              <Select.Group>
+                <Select.Label>Options</Select.Label>
                 {options.map(
                   (o, idx) =>
                     o._id !== firstOption && (
-                      <SelectItem key={o._id} value={o._id}>
+                      <Select.Item key={o._id} value={o._id}>
                         {o.title}
-                      </SelectItem>
+                      </Select.Item>
                     )
                 )}
-              </SelectGroup>
-            </SelectContent>
-          </SelectRoot>
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
 
-          <SelectRoot
+          <Select.Root
             key={thirdOption}
             value={thirdOption}
             onValueChange={(v) => setThirdOption(v)}
             disabled={!secondOption}
           >
-            <SelectTrigger placeholder="Pick Third Option" />
-            <SelectContent position="popper">
-              <SelectGroup>
-                <SelectLabel>Options</SelectLabel>
+            <Select.Trigger placeholder="Pick Third Option" />
+            <Select.Content position="popper">
+              <Select.Group>
+                <Select.Label>Options</Select.Label>
                 {options.map(
                   (o, idx) =>
                     o._id !== firstOption &&
                     o._id !== secondOption && (
-                      <SelectItem key={o._id} value={o._id}>
+                      <Select.Item key={o._id} value={o._id}>
                         {o.title}
-                      </SelectItem>
+                      </Select.Item>
                     )
                 )}
-              </SelectGroup>
-            </SelectContent>
-          </SelectRoot>
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
         </Flex>
 
         <Flex gap="3" mt="4" justify="end">
-          <DialogClose>
+          <Dialog.Close>
             <Button variant="soft" color="gray" onClick={() => setOpen(false)}>
               Cancel
             </Button>
-          </DialogClose>
-          <DialogClose>
+          </Dialog.Close>
+          <Dialog.Close>
             <Button onClick={handleSubmit}>Save</Button>
-          </DialogClose>
+          </Dialog.Close>
         </Flex>
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 }

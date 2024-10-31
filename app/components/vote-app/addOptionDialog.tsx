@@ -2,21 +2,11 @@
 import { createOption, getTags } from "@/app/libs/functions";
 import {
   Button,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
+  Dialog,
   Flex,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
+  Select,
   Text,
-  TextFieldInput,
+  TextField,
 } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -63,35 +53,32 @@ export default function AddOptionDialog() {
   useEffect(() => {
     (async () => {
       const data = await getTags();
-
-      setTags(data.tags);
+      if (data) {
+        setTags(data.tags);
+      }
     })();
   }, []);
 
   return (
-    <DialogRoot open={open}>
-      <DialogTrigger>
-        <Button
-          variant="outline"
-          color="green"
-          onClick={() => setOpen(true)}
-        >
+    <Dialog.Root open={open}>
+      <Dialog.Trigger>
+        <Button variant="outline" color="green" onClick={() => setOpen(true)}>
           New Option
         </Button>
-      </DialogTrigger>
+      </Dialog.Trigger>
 
-      <DialogContent style={{ maxWidth: 450 }}>
-        <DialogTitle>Add New Option</DialogTitle>
-        <DialogDescription size="2" mb="4">
+      <Dialog.Content style={{ maxWidth: 450 }}>
+        <Dialog.Title>Add New Option</Dialog.Title>
+        <Dialog.Description size="2" mb="4">
           Create a New Option
-        </DialogDescription>
+        </Dialog.Description>
 
         <Flex direction="column" gap="3">
           <label>
             <Text as="div" size="2" mb="1" weight="bold">
               Title
             </Text>
-            <TextFieldInput
+            <TextField.Root
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Option name"
@@ -101,7 +88,7 @@ export default function AddOptionDialog() {
             <Text as="div" size="2" mb="1" weight="bold">
               Description
             </Text>
-            <TextFieldInput
+            <TextField.Root
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Option description"
@@ -112,7 +99,7 @@ export default function AddOptionDialog() {
             <Text as="div" size="2" mb="1" weight="bold">
               Link
             </Text>
-            <TextFieldInput
+            <TextField.Root
               value={link}
               onChange={(e) => setLink(e.target.value)}
               placeholder="Link"
@@ -123,39 +110,39 @@ export default function AddOptionDialog() {
             <Text as="div" size="2" mb="1" weight="bold">
               Image Url
             </Text>
-            <TextFieldInput
+            <TextField.Root
               value={imgUrl}
               onChange={(e) => setImgUrl(e.target.value)}
               placeholder="Link"
             />
           </label>
 
-          <SelectRoot value={tag} onValueChange={(v) => setTag(v)}>
-            <SelectTrigger placeholder="Pick a Tag" />
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Options</SelectLabel>
+          <Select.Root value={tag} onValueChange={(v) => setTag(v)}>
+            <Select.Trigger placeholder="Pick a Tag" />
+            <Select.Content>
+              <Select.Group>
+                <Select.Label>Options</Select.Label>
                 {tags.map((t, idx) => (
-                  <SelectItem key={t._id} value={t._id}>
+                  <Select.Item key={t._id} value={t._id}>
                     {t.name}
-                  </SelectItem>
+                  </Select.Item>
                 ))}
-              </SelectGroup>
-            </SelectContent>
-          </SelectRoot>
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
         </Flex>
 
         <Flex gap="3" mt="4" justify="end">
-          <DialogClose>
+          <Dialog.Close>
             <Button variant="soft" color="gray" onClick={() => setOpen(false)}>
               Cancel
             </Button>
-          </DialogClose>
-          <DialogClose>
+          </Dialog.Close>
+          <Dialog.Close>
             <Button onClick={handleSubmit}>Save</Button>
-          </DialogClose>
+          </Dialog.Close>
         </Flex>
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 }

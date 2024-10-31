@@ -14,7 +14,7 @@ export default function PlatFormListItem({ app }: Props) {
   return (
     <Link href={app.url}>
       <Box className="relative py-4 border-b border-gray-500 transition-all duration-300 bg-[#111113] hover:bg-[#1e1e22]">
-        <Box position="absolute" width="8" height="8">
+        <Box position="absolute" width="48px" height="48px">
           {app.logo}
         </Box>
         <Flex ml="9" direction="column" className="">

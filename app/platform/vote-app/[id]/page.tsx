@@ -120,7 +120,7 @@ export default async function Page({ params }: Props) {
             <Box mt="4">
               {result.map((winner, idx) => (
                 <Flex align="center" mb="2" key={idx}>
-                  <Box display="inline" mr="2" width="4" height="4">
+                  <Box display="inline" mr="2" width="24px" height="24px">
                     <FontAwesomeIcon
                       icon={faCrown}
                       size="xs"

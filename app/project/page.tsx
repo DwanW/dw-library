@@ -4,12 +4,6 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
-import SkipHero from "public/project/skip.png";
-import DawgsHero from "public/project/dawgs.png";
-import ChatbotHero from "public/project/chatbot.png";
-import TaxClinicHero from "public/project/taxclinic.png";
-import DwanDevHero from "public/project/dwdev.png";
-import EmojiHero from "public/project/emojiparty.png";
 import Breadcrumb from "../components/breadcrumb";
 
 const LIST = [
@@ -20,7 +14,9 @@ const LIST = [
     logo: (
       <Image
         alt="logo"
-        src={SkipHero}
+        src="/project/skip.png"
+        width={176}
+        height={176}
         priority
         className="object-cover block w-full h-44"
       />
@@ -43,7 +39,9 @@ const LIST = [
     logo: (
       <Image
         alt="logo"
-        src={DawgsHero}
+        src="/project/dawgs.png"
+        width={176}
+        height={176}
         priority
         className="object-cover block w-full h-44"
       />
@@ -66,8 +64,10 @@ const LIST = [
     logo: (
       <Image
         alt="logo"
-        src={ChatbotHero}
+        src="/project/chatbot.png"
         priority
+        width={176}
+        height={176}
         className="object-cover block w-full h-44"
       />
     ),
@@ -89,8 +89,10 @@ const LIST = [
     logo: (
       <Image
         alt="logo"
-        src={DwanDevHero}
+        src="/project/dwdev.png"
         priority
+        width={176}
+        height={176}
         className="object-cover block w-full h-44"
       />
     ),
@@ -113,8 +115,10 @@ const LIST = [
     logo: (
       <Image
         alt="logo"
-        src={TaxClinicHero}
+        src="/project/taxclinic.png"
         priority
+        width={176}
+        height={176}
         className="object-cover block w-full h-44"
       />
     ),
@@ -136,8 +140,10 @@ const LIST = [
     logo: (
       <Image
         alt="logo"
-        src={EmojiHero}
+        src="/project/emojiparty.png"
         priority
+        width={176}
+        height={176}
         className="object-cover block w-full h-44"
       />
     ),

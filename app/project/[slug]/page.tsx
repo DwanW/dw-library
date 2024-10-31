@@ -9,12 +9,6 @@ import {
 } from "@radix-ui/themes";
 import Image from "next/image";
 
-import SkipHero from "public/project/skip.png";
-import DawgsHero from "public/project/dawgs.png";
-import ChatbotHero from "public/project/chatbot.png";
-import TaxClinicHero from "public/project/taxclinic.png";
-import DwanDevHero from "public/project/dwdev.png";
-import EmojiHero from "public/project/emojiparty.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
@@ -34,7 +28,9 @@ const PROJECT_META_DATA = [
     hero: (
       <Image
         alt="logo"
-        src={SkipHero}
+        src="/project/skip.png"
+        width={384}
+        height={384}
         priority
         className="object-cover rounded-md block w-full h-96"
       />
@@ -52,7 +48,9 @@ const PROJECT_META_DATA = [
     hero: (
       <Image
         alt="logo"
-        src={DawgsHero}
+        src="/project/dawgs.png"
+        width={384}
+        height={384}
         priority
         className="object-cover rounded-md block w-full h-96"
       />
@@ -69,7 +67,9 @@ const PROJECT_META_DATA = [
     hero: (
       <Image
         alt="logo"
-        src={ChatbotHero}
+        src="/project/chatbot.png"
+        width={384}
+        height={384}
         priority
         className="object-cover rounded-md block w-full h-96"
       />
@@ -86,7 +86,9 @@ const PROJECT_META_DATA = [
     hero: (
       <Image
         alt="logo"
-        src={DwanDevHero}
+        src="/project/dwdev.png"
+        width={384}
+        height={384}
         priority
         className="object-cover rounded-md block w-full h-96"
       />
@@ -103,7 +105,9 @@ const PROJECT_META_DATA = [
     hero: (
       <Image
         alt="logo"
-        src={TaxClinicHero}
+        width={384}
+        height={384}
+        src="/project/taxclinic.png"
         priority
         className="object-cover rounded-md block w-full h-96"
       />
@@ -120,7 +124,9 @@ const PROJECT_META_DATA = [
     hero: (
       <Image
         alt="logo"
-        src={EmojiHero}
+        src="/project/emojiparty.png"
+        width={384}
+        height={384}
         priority
         className="object-cover rounded-md block w-full h-96"
       />

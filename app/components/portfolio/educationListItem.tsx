@@ -13,7 +13,7 @@ type Props = {
 export default function EducationListItem({ exp }: Props) {
   return (
     <Box className="relative py-4 border-b border-gray-500 ">
-      <Box position="absolute" width="8" height="8">
+      <Box position="absolute" width="48px" height="48px">
         {exp.logo}
       </Box>
       <Flex ml="9" direction="column" className="">

@@ -14,7 +14,7 @@ type Props = {
 export default function TimelineItem({ exp }: Props) {
   return (
     <Box className="relative mb-8 after:content-[''] after:absolute after:top-12 after:left-6 after:h-full after:border after:border-r after:border-[#dee2e692]">
-      <Box position="absolute" width="8" height="8">
+      <Box position="absolute" width="48px" height="48px">
         {exp.logo}
       </Box>
       <Flex ml="9" direction="column" className="min-h-[120px]">

@@ -1,26 +1,16 @@
-import {
-  Box,
-  Button,
-  DialogClose,
-  DialogContent,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-  Flex,
-  Text,
-} from "@radix-ui/themes";
+import { Box, Button, Dialog, Flex, Text } from "@radix-ui/themes";
 
 export default function ViewRuleDialog() {
   return (
-    <DialogRoot>
-      <DialogTrigger>
+    <Dialog.Root>
+      <Dialog.Trigger>
         <Button variant="outline" color="crimson">
           View Rule
         </Button>
-      </DialogTrigger>
+      </Dialog.Trigger>
 
-      <DialogContent size="4">
-        <DialogTitle>STV Rule</DialogTitle>
+      <Dialog.Content size="4">
+        <Dialog.Title>STV Rule</Dialog.Title>
 
         <Box>
           <Text size="3" weight="bold" color="amber">
@@ -80,13 +70,13 @@ export default function ViewRuleDialog() {
         </Box>
 
         <Flex gap="3" mt="4" justify="end">
-          <DialogClose>
+          <Dialog.Close>
             <Button variant="soft" color="gray">
               Okay
             </Button>
-          </DialogClose>
+          </Dialog.Close>
         </Flex>
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 }

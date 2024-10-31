@@ -57,12 +57,6 @@ const SKILLS = [
     ),
   },
   {
-    label: "Python",
-    icon: (color: string | undefined) => (
-      <FontAwesomeIcon icon={faPython} color={color} />
-    ),
-  },
-  {
     label: "CI/CD",
     icon: (color: string | undefined) => (
       <FontAwesomeIcon icon={faCog} color={color} />

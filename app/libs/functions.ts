@@ -21,7 +21,8 @@ export const createPoll = async (newPoll: NewPoll) => {
       cache: "no-store",
     });
     if (!res.ok) {
-      throw new Error("failed to create poll");
+      console.log("failed to create poll");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -31,12 +32,14 @@ export const createPoll = async (newPoll: NewPoll) => {
 
 export const getPollById = async (id: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/poll/${id}`, {
+    const API_URL = process.env.API_URL;
+    const res = await fetch(`${API_URL}/poll/${id}`, {
       cache: "no-store",
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch poll");
+      console.log("Failed to fetch poll");
+      return;
     }
 
     return res.json();
@@ -52,7 +55,8 @@ export const getPolls = async () => {
       cache: "no-store",
     });
     if (!res.ok) {
-      throw new Error("failed to fetch poll");
+      console.log("failed to fetch poll");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -67,7 +71,8 @@ export const getTags = async () => {
       cache: "no-store",
     });
     if (!res.ok) {
-      throw new Error("failed to fetch tags");
+      console.log("failed to fetch tags");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -87,7 +92,8 @@ export const createTag = async (newTag: { name: String }) => {
       cache: "no-store",
     });
     if (!res.ok) {
-      throw new Error("failed to create tag");
+      console.log("failed to create tag");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -115,7 +121,8 @@ export const createOption = async (newOption: NewOption) => {
       cache: "no-store",
     });
     if (!res.ok) {
-      throw new Error("failed to create option");
+      console.log("failed to create option");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -130,7 +137,8 @@ export const getOptions = async () => {
       cache: "no-store",
     });
     if (!res.ok) {
-      throw new Error("failed to fetch options");
+      console.log("failed to fetch options");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -145,7 +153,8 @@ export const getOptionsByTag = async (tagId: string) => {
       cache: "no-store",
     });
     if (!res.ok) {
-      throw new Error("failed to fetch options");
+      console.log("failed to fetch options");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -174,7 +183,8 @@ export const createVote = async (newVote: NewVote) => {
     });
 
     if (!res.ok) {
-      throw new Error("failed to create vote");
+      console.log("failed to create vote");
+      return;
     }
     return res.json();
   } catch (e) {
@@ -193,7 +203,8 @@ export const getVoteByEmailAndPoll = async (email: string, poll: string) => {
       body: JSON.stringify({ poll }),
     });
     if (!res.ok) {
-      throw new Error("failed to fetch vote");
+      console.log("failed to fetch vote");
+      return;
     }
     return res.json();
   } catch (e) {

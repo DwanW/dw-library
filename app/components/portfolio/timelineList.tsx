@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import DWLogo from "public/dw-work.jpg";
-import LT3Logo from "public/lt3-work.jpg";
 import TimelineItem from "./timelineItem";
 
 type Props = {};
@@ -19,7 +17,7 @@ const EXP = [
     logo: (
       <Image
         alt="image2"
-        src={LT3Logo}
+        src="/lt3-work.jpg"
         fill
         priority
         className="rounded-2xl object-cover"
@@ -37,7 +35,7 @@ const EXP = [
     logo: (
       <Image
         alt="image2"
-        src={DWLogo}
+        src="/dw-work.jpg"
         fill
         priority
         className="rounded-2xl object-cover"

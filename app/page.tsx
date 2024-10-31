@@ -1,7 +1,4 @@
 import Image from "next/image";
-import homeImg1 from "public/1.jpg";
-import homeImg2 from "public/2.jpg";
-import homeImg3 from "public/3.jpg";
 
 import { Box, Flex, Grid, Text } from "@radix-ui/themes";
 import { TypeText } from "./components/portfolio/typewriter";
@@ -39,7 +36,7 @@ export default function Home() {
           <div className="relative h-32 sm:h-40 col-span-2 sm:col-span-3">
             <Image
               alt="image1"
-              src={homeImg1}
+              src="/1.jpg"
               fill
               priority
               className="rounded-lg object-cover"
@@ -48,7 +45,7 @@ export default function Home() {
           <div className="relative h-64 sm:h-80 sm:mb-0 col-span-1">
             <Image
               alt="image2"
-              src={homeImg2}
+              src="/2.jpg"
               fill
               priority
               className="rounded-lg object-cover object-[-16px] sm:object-center"
@@ -57,7 +54,7 @@ export default function Home() {
           <div className="relative h-64 sm:h-80 sm:mb-0 col-span-1 sm:col-span-2">
             <Image
               alt="image2"
-              src={homeImg3}
+              src="/3.jpg"
               fill
               priority
               className="rounded-lg object-cover object-[-16px] sm:object-center"

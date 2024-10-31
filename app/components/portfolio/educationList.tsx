@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import EVLogo from "public/evolve-ed.jpg";
-import UALogo from "public/ua-ed.jpg";
 import EducationListItem from "./educationListItem";
 
 type Props = {};
@@ -14,7 +12,7 @@ const ED = [
     logo: (
       <Image
         alt="evolveu logo"
-        src={EVLogo}
+        src="/evolve.jpg"
         fill
         priority
         className="rounded-full object-cover"
@@ -27,7 +25,7 @@ const ED = [
     logo: (
       <Image
         alt="u of a logo"
-        src={UALogo}
+        src="/ua-ed.jpg"
         fill
         priority
         className="rounded-full object-cover"

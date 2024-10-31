@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import VoteLogo from "public/platform/vote-icon.png";
 import PlatFormListItem from "./platformListItem";
 
 type Props = {};
@@ -13,13 +12,27 @@ const APPS = [
     logo: (
       <Image
         alt="app logo"
-        src={VoteLogo}
+        src="/platform/vote-icon.png"
         fill
         priority
         className="rounded-md object-cover"
       />
     ),
     url: "/platform/vote-app",
+  },
+  {
+    title: "Sentiment Analyzer",
+    subtitle: "Custom Machine Learning Model for Analyzing Text Sentiment",
+    logo: (
+      <Image
+        alt="app logo"
+        src="/platform/feedback.png"
+        fill
+        priority
+        className="rounded-md object-cover"
+      />
+    ),
+    url: "/platform/sentiment-analysis",
   },
 ];
 

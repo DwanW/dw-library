@@ -2,22 +2,12 @@
 import { createPoll, getTags } from "@/app/libs/functions";
 import {
   Button,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
+  Dialog,
   Flex,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectRoot,
-  SelectTrigger,
+  Select,
   Switch,
   Text,
-  TextFieldInput,
+  TextField,
 } from "@radix-ui/themes";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -67,35 +57,32 @@ export default function AddPollDialog() {
   useEffect(() => {
     (async () => {
       const data = await getTags();
-
-      setTags(data.tags);
+      if (data) {
+        setTags(data.tags);
+      }
     })();
   }, []);
 
   return (
-    <DialogRoot open={open}>
-      <DialogTrigger>
-        <Button
-          variant="outline"
-          color="green"
-          onClick={() => setOpen(true)}
-        >
+    <Dialog.Root open={open}>
+      <Dialog.Trigger>
+        <Button variant="outline" color="green" onClick={() => setOpen(true)}>
           New Poll
         </Button>
-      </DialogTrigger>
+      </Dialog.Trigger>
 
-      <DialogContent style={{ maxWidth: 450 }}>
-        <DialogTitle>Add New Poll</DialogTitle>
-        <DialogDescription size="2" mb="4">
+      <Dialog.Content style={{ maxWidth: 450 }}>
+        <Dialog.Title>Add New Poll</Dialog.Title>
+        <Dialog.Description size="2" mb="4">
           Create a New Poll
-        </DialogDescription>
+        </Dialog.Description>
 
         <Flex direction="column" gap="3">
           <label>
             <Text as="div" size="2" mb="1" weight="bold">
               Title
             </Text>
-            <TextFieldInput
+            <TextField.Root
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Poll name"
@@ -105,7 +92,7 @@ export default function AddPollDialog() {
             <Text as="div" size="2" mb="1" weight="bold">
               Description
             </Text>
-            <TextFieldInput
+            <TextField.Root
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Poll description"
@@ -115,8 +102,8 @@ export default function AddPollDialog() {
             <Text as="div" size="2" mb="1" weight="bold">
               End Date
             </Text>
-            <TextFieldInput
-              value={endDate}
+            <TextField.Root
+              value={endDate || ""}
               onChange={(e) => setEndDate(e.target.value)}
               type="date"
               defaultValue=""
@@ -137,39 +124,39 @@ export default function AddPollDialog() {
             <Text as="div" size="2" mb="1" weight="bold">
               Passphrase
             </Text>
-            <TextFieldInput
+            <TextField.Root
               value={passPhrase}
               onChange={(e) => setPassPhrase(e.target.value)}
               placeholder="Passphrase"
             />
           </label> */}
 
-          <SelectRoot value={tag} onValueChange={(v) => setTag(v)}>
-            <SelectTrigger placeholder="Pick a Tag" />
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Options</SelectLabel>
+          <Select.Root value={tag} onValueChange={(v) => setTag(v)}>
+            <Select.Trigger placeholder="Pick a Tag" />
+            <Select.Content>
+              <Select.Group>
+                <Select.Label>Options</Select.Label>
                 {tags.map((t, idx) => (
-                  <SelectItem key={t._id} value={t._id}>
+                  <Select.Item key={t._id} value={t._id}>
                     {t.name}
-                  </SelectItem>
+                  </Select.Item>
                 ))}
-              </SelectGroup>
-            </SelectContent>
-          </SelectRoot>
+              </Select.Group>
+            </Select.Content>
+          </Select.Root>
         </Flex>
 
         <Flex gap="3" mt="4" justify="end">
-          <DialogClose>
+          <Dialog.Close>
             <Button variant="soft" color="gray" onClick={() => setOpen(false)}>
               Cancel
             </Button>
-          </DialogClose>
-          <DialogClose>
+          </Dialog.Close>
+          <Dialog.Close>
             <Button onClick={handleSubmit}>Save</Button>
-          </DialogClose>
+          </Dialog.Close>
         </Flex>
-      </DialogContent>
-    </DialogRoot>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 }
