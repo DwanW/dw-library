@@ -44,7 +44,7 @@ const SentimentAnalysis: React.FC = () => {
         Enter text to analyze sentiment
       </Text>
       <Text size="2" color="gray">
-        Note: The server might take up to 50 seconds to spin up.
+        Note: The server might take up to 50 seconds or more to spin up.
       </Text>
       <form onSubmit={handleSubmit} className="w-full max-w-md">
         <Flex direction="column" gap="3">
