@@ -36,18 +36,16 @@ export async function GET(req: NextRequest, props: { params: Promise<any> }) {
   const params = await props.params;
   const { id } = params;
   await connectMongoDB();
-  const poll: Poll | null = (await Poll.findById(id)
-    .lean()
-    .exec()) as Poll | null;
+  const poll = (await Poll.findById(id).lean().exec()) as Poll | null;
   // calculate result if currentDate is greater or equal to the poll endDate
   const currentDate = new Date().toISOString();
-  const votes: Vote[] = (await Vote.find({ poll: id }).lean().exec()) as Vote[];
+  const votes: Vote[] = (await Vote.find({ poll: id })
+    .lean()
+    .exec()) as unknown as Vote[];
   if (poll && poll?.endDate.toISOString() <= currentDate) {
-    const options: Option[] = (await Option.find({
-      tag: poll.tag,
-    })
+    const options: Option[] = (await Option.find({ tag: poll.tag })
       .lean()
-      .exec()) as Option[];
+      .exec()) as unknown as Option[];
     const { winners: result, voteStats } = getPollResult(votes, options);
 
     let optionsById: { [key: string]: Option } = {};
