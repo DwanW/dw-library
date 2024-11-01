@@ -2,8 +2,8 @@
 
 import SentimentAnalysis from "@/app/components/sentiment-analyzer/sentimentAnalysis";
 import { Box, Flex, Section, Text } from "@radix-ui/themes";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 
 export default async function Page() {
   const session = await getServerSession();

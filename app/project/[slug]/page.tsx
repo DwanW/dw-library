@@ -16,9 +16,9 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import Breadcrumb from "@/app/components/breadcrumb";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: String;
-  };
+  }>;
 };
 
 const PROJECT_META_DATA = [
@@ -139,7 +139,8 @@ const PROJECT_META_DATA = [
   },
 ];
 
-export default function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const { slug } = params;
   const projectData = PROJECT_META_DATA.find((p) => p.slug === slug);
   return (

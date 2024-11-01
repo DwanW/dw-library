@@ -1,10 +1,11 @@
 "use client";
-
 import { Card, Grid, Inset } from "@radix-ui/themes";
 
 import Link from "next/link";
 
 import ProjectListItem from "./projectListItem";
+
+import type { JSX } from "react";
 
 type Props = {
   list: {

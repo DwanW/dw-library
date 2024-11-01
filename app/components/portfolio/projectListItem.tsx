@@ -1,6 +1,7 @@
 "use client";
-
 import { Box, Flex, Text } from "@radix-ui/themes";
+
+import type { JSX } from "react";
 
 type Props = {
   project: {

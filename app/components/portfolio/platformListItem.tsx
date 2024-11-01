@@ -1,6 +1,8 @@
 import { Box, Flex, Text } from "@radix-ui/themes";
 import Link from "next/link";
 
+import type { JSX } from "react";
+
 type Props = {
   app: {
     title: String;

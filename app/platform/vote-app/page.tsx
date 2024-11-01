@@ -5,8 +5,8 @@ import AddTagDialog from "@/app/components/vote-app/addTagDialog";
 import PollList from "@/app/components/vote-app/pollList";
 import ViewRuleDialog from "@/app/components/vote-app/viewRuleDialog";
 import { Box, Flex, Section, Text, Tooltip } from "@radix-ui/themes";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 
 export default async function Page() {
   const session = await getServerSession();

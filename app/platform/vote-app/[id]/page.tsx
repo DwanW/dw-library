@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Box, Flex, Grid, Section, Text } from "@radix-ui/themes";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 type Option = {
@@ -36,7 +36,8 @@ export type VoteStats = [
   }
 ][];
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const { id } = params;
   const {
     poll,
